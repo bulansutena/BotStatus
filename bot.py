@@ -1,5 +1,3 @@
-# (c) @xditya
-# This file is a part of https://github.com/xditya/BotStatus
 
 import pytz
 import logging
@@ -30,9 +28,9 @@ async def BotzHub():
     async with user_bot:
         while True:
             print("[INFO] starting to check uptime..")
-            await user_bot.edit_message(int(chnl_id), msg_id, "**@BotzHub Bots Stats.**\n\n`Performing a periodic check...`")
+            await user_bot.edit_message(int(chnl_id), msg_id, "**Our Bot's 🤖 Status 📈 :**\n\n`Performing a periodic check...`")
             c = 0
-            edit_text = "**@BotzHub Bots Stats.**\n\n"
+            edit_text = "**Our Bot's 🤖 Status 📈 :**\n(Updating Every 30 Minutes)\n\n"
             for bot in bots:
                 print(f"[INFO] checking @{bot}")
                 snt = await user_bot.send_message(bot, "/start")
@@ -51,18 +49,18 @@ async def BotzHub():
                 msg = history.messages[0].id
                 if snt.id == msg:
                     print(f"@{bot} is down.")
-                    edit_text += f"@{bot} - ❌\n"
+                    edit_text += f"🤖 @{bot} - ❌\n\n"
                 elif snt.id + 1 == msg:
-                    edit_text += f"@{bot} - ✅\n"
+                    edit_text += f"🤖 @{bot} - ✅\n\n"
                 await user_bot.send_read_acknowledge(bot)
                 c += 1
                 await user_bot.edit_message(int(chnl_id), msg_id, edit_text)
-            k = pytz.timezone("Asia/Kolkata")
+            k = pytz.timezone("Asia/Dhaka")
             month = dt.now(k).strftime("%B")
             day = dt.now(k).strftime("%d")
             year =  dt.now(k).strftime("%Y")
             t = dt.now(k).strftime("%H:%M:%S")
-            edit_text +=f"\n**Last Checked:** \n`{t} - {day} {month} {year} [IST]`\n\n__Bots status are auto-updated every 2 hours__"
+            edit_text +=f"Last Checked ⏳ On :\n`{day} {month} {year} - {t} [BST]`"
             await user_bot.edit_message(int(chnl_id), msg_id, edit_text)
             print(f"Checks since last restart - {c}")
             print("Sleeping for 2 hours.")
