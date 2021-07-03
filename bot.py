@@ -60,7 +60,7 @@ async def BotzHub():
             day = dt.now(k).strftime("%d")
             year =  dt.now(k).strftime("%Y")
             t = dt.now(k).strftime("%H:%M:%S")
-            edit_text +=f"Last Checked ⏳ On :\n`{day} {month} {year} - {t} [BST]`"
+            edit_text +=f"\n**Last Checked ⏳ On** :\n`{day} {month} {year} - {t} [BST]`"
             await user_bot.edit_message(int(chnl_id), msg_id, edit_text)
             print(f"Checks since last restart - {c}")
             print("Sleeping for 2 hours.")
