@@ -1,5 +1,3 @@
-# (c) @xditya
-# This file is a part of https://github.com/xditya/BotStatus
 
 import pytz
 import logging
@@ -26,7 +24,7 @@ try:
     bots = botlist.split()
     session_name = str(session)
     user_bot = TelegramClient(StringSession(session_name), appid, apihash)
-    logging.info("\n\nStarted.\nVisit @BotzHuB!")
+    logging.info("\n\nStarted.\nVisit @AsmSafone!")
 except Exception as e:
     logging.info(f"ERROR\n{str(e)}")
 
@@ -39,12 +37,12 @@ async def BotzHub():
                 await user_bot.edit_message(
                     int(chnl_id),
                     msg_id,
-                    "**@BotzHub Bots Stats.**\n\n`Performing a periodic check...`",
+                    "**Our Bot's 🤖 Status 📈 :**\n\n`Performing a periodic check...`",
                 )
             except MessageNotModifiedError:
                 pass
             c = 0
-            edit_text = "**@BotzHub Bots Stats.**\n\n"
+            edit_text = "**Our Bot's 🤖 Status 📈 :**\n(Updating Every 30 Minutes)\n\n"
             for bot in bots:
                 try:
                     logging.info(f"[INFO] checking @{bot}")
@@ -67,21 +65,21 @@ async def BotzHub():
                     msg = history.messages[0].id
                     if snt.id == msg:
                         logging.info(f"@{bot} is down.")
-                        edit_text += f"@{bot} - ❌\n"
+                        edit_text += f"🤖 @{bot}\n📊 Status: `DOWN` ❌\n"
                     elif snt.id + 1 == msg:
-                        edit_text += f"@{bot} - ✅\n"
+                        edit_text += f"🤖 @{bot} \n📊 Status: `UP` ✅\n"
                     await user_bot.send_read_acknowledge(bot)
                     c += 1
                 except FloodWaitError as f:
                     logging.info(f"Floodwait!\n\nSleeping for {f.seconds}...")
                     sleep(f.seconds + 10)
             await user_bot.edit_message(int(chnl_id), int(msg_id), edit_text)
-            k = pytz.timezone("Asia/Kolkata")
+            k = pytz.timezone("Asia/Dhaka")
             month = dt.now(k).strftime("%B")
             day = dt.now(k).strftime("%d")
             year = dt.now(k).strftime("%Y")
             t = dt.now(k).strftime("%H:%M:%S")
-            edit_text += f"\n**Last Checked:** \n`{t} - {day} {month} {year} [IST]`\n\n__Bots status are auto-updated every 2 hours__"
+            edit_text += f"\n**Last Checked ⏳ On** :\n`{day} {month} {year} - {t} [BST]`"
             await user_bot.edit_message(int(chnl_id), int(msg_id), edit_text)
             logging.info(f"Checks since last restart - {c}")
             logging.info("Sleeping for 2 hours.")
