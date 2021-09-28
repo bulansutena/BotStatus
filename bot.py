@@ -36,12 +36,12 @@ async def BotzHub():
                 await user_bot.edit_message(
                     int(chnl_id),
                     msg_id,
-                    "**Our Bot's 🤖 Status 📈 :**\n\n`Performing a periodic check...`",
+                    "**Status 📈 Bot SF Corp 🤖 :**\n\n`Sedang dalam pengecekan...`",
                 )
             except MessageNotModifiedError:
                 pass
             c = 0
-            edit_text = "**Our Bot's 🤖 Status 📈 :**\n(Updating Every 10 Minutes)\n\n"
+            edit_text = "**Status 📈  🤖 :**\n(Update Setiap 1 Jam)\n\n"
             for bot in bots:
                 try:
                     print(f"[INFO] checking @{bot}")
@@ -64,24 +64,24 @@ async def BotzHub():
                     msg = history.messages[0].id
                     if snt.id == msg:
                         print(f"@{bot} is down.")
-                        edit_text += f"🤖 @{bot}\n📊 Status: `DOWN` ❌\n"
+                        edit_text += f"🤖 @{bot}\n📊 Status: `DOWN` ❌\n\n"
                     elif snt.id + 1 == msg:
-                        edit_text += f"🤖 @{bot} \n📊 Status: `UP` ✅\n"
+                        edit_text += f"🤖 @{bot} \n📊 Status: `UP` ✅\n\n"
                     await user_bot.send_read_acknowledge(bot)
                     c += 1
                 except FloodWaitError as f:
                     print(f"Floodwait!\n\nSleeping for {f.seconds}...")
                     sleep(f.seconds + 10)
             await user_bot.edit_message(int(chnl_id), int(msg_id), edit_text)
-            k = pytz.timezone("Asia/Dhaka")
+            k = pytz.timezone("Asia/Jakarta")
             month = dt.now(k).strftime("%B")
             day = dt.now(k).strftime("%d")
             year = dt.now(k).strftime("%Y")
             t = dt.now(k).strftime("%H:%M:%S")
-            edit_text += f"\n**Last Checked ⏳ On** :\n`{day} {month} {year} - {t} [BST]`"
+            edit_text += f"\n**Terakhir Check ⏳ Pada** :\n`[UTC+7] {day} {month} {year} - {t} WIB`"
             await user_bot.edit_message(int(chnl_id), int(msg_id), edit_text)
             print(f"Checks since last restart - {c}")
-            print("Sleeping for 10 menits.")
-            await asyncio.sleep(2 * 5 * 5)
+            print("Tidur for 1 Jam.")
+            await asyncio.sleep(1 * 60 * 60)
 
 user_bot.loop.run_until_complete(BotzHub())
