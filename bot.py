@@ -41,7 +41,7 @@ async def BotzHub():
             except MessageNotModifiedError:
                 pass
             c = 0
-            edit_text = "**Our Bot's 🤖 Status 📈 :**\n(Updating Every 30 Minutes)\n\n"
+            edit_text = "**Our Bot's 🤖 Status 📈 :**\n(Updating Every 10 Minutes)\n\n"
             for bot in bots:
                 try:
                     print(f"[INFO] checking @{bot}")
@@ -81,7 +81,7 @@ async def BotzHub():
             edit_text += f"\n**Last Checked ⏳ On** :\n`{day} {month} {year} - {t} [BST]`"
             await user_bot.edit_message(int(chnl_id), int(msg_id), edit_text)
             print(f"Checks since last restart - {c}")
-            print("Sleeping for 2 hours.")
-            await asyncio.sleep(2 * 60 * 60)
+            print("Sleeping for 10 menits.")
+            await asyncio.sleep(2 * 5 * 5)
 
 user_bot.loop.run_until_complete(BotzHub())
