@@ -41,7 +41,7 @@ async def BotzHub():
             except MessageNotModifiedError:
                 pass
             c = 0
-            edit_text = "**Status 📈  🤖 :**\n(Update Setiap 1 Jam)\n\n"
+            edit_text = "**Status 📈 Bot SF Corp 🤖 :**\n(Update Setiap 1 Jam)\n\n"
             for bot in bots:
                 try:
                     print(f"[INFO] checking @{bot}")
@@ -78,7 +78,7 @@ async def BotzHub():
             day = dt.now(k).strftime("%d")
             year = dt.now(k).strftime("%Y")
             t = dt.now(k).strftime("%H:%M:%S")
-            edit_text += f"\n**Terakhir Check ⏳ Pada** :\n`[UTC+7] {day} {month} {year} - {t} WIB`"
+            edit_text += f"\n**Terakhir Check ⏳ Pada** :\n`{day} {month} {year} - {t} WIB`"
             await user_bot.edit_message(int(chnl_id), int(msg_id), edit_text)
             print(f"Checks since last restart - {c}")
             print("Tidur for 1 Jam.")
